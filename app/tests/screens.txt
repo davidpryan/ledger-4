@@ -1,0 +1,25 @@
+# LEDGER-4's manual screenshots: ./build.sh --shots
+wait 700
+tap PLAY
+wait 900
+shot screen-phrase.png
+tap HOME
+wait 600
+shot screen-song.png
+tap SEQ
+wait 400
+shot screen-chain.png
+tap PLAY
+wait 60
+tap ENV
+wait 100
+shot screen-instrument.png
+tap EDIT
+turn SELECT 8
+turn ALGO 3
+wait 60
+shot screen-command.png
+press SEL
+wait 1100
+shot screen-card.png
+release SEL

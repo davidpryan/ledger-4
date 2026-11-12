@@ -1,0 +1,70 @@
+# LEDGER-4 in the host simulator: ./build.sh --host
+wait 600
+expect page 2
+expect phrase 0
+# the demo phrase 00 has a kick on row 0
+expect note0 36
+# PLAY on the phrase page loops it: notes go out on MIDI channel 10 (the drums)
+tap PLAY
+wait 30
+expect playing 1
+expect_out USB 99 24 78
+wait 1200
+expect playing 1
+tap PLAY
+wait 60
+expect playing 0
+# write a note: the cursor to row 1, C4 is key 7
+turn SELECT 1
+wait 20
+expect prow 1
+tapkey 7
+wait 30
+expect note1 60
+expect prow 2
+expect dirty 1
+# a command: to the CMD column, white key 1 picks A (arpeggio), then two hex digits 3 7
+turn SELECT -1
+turn ALGO 3
+wait 20
+expect pcol 3
+tapkey w1
+wait 20
+expect fx1 1
+expect pcol 4
+tapkey w3
+tapkey w7
+wait 20
+expect val1 55
+# FX clears the value's command
+turn SELECT -1
+wait 20
+turn ALGO 0
+tap FX
+wait 20
+expect fx1 0
+# song page: the song plays all tracks
+tap HOME
+wait 30
+expect page 0
+expect song0 0
+tap PLAY
+wait 3000
+expect playing 1
+expect_out USB 91 21 78
+tap PLAY
+wait 60
+# save and reload
+tap SAVE
+wait 200
+expect dirty 0
+reboot
+wait 600
+expect note1 60
+# help card: hold ARP alone a second
+press ARP
+wait 1200
+expect card 8
+release ARP
+wait 30
+expect card -1

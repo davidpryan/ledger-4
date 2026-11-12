@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "id": "ledger-4",
+  "name": "LEDGER-4",
+  "author": "David Ryan",
+  "license": "MPL-2.0",
+  "tagline": "a tracker: song, chain, phrase, commands",
+  "description": "LEDGER-4 is a tracker for the FM-1 in the line of Little Sound DJ: a song of chains, chains of phrases with transpose, phrases of 16 rows of note, instrument, velocity and a command (arpeggio, chance, delay, kill, retrigger, slide, tempo, hop, filter, CC, random, groove, echo). Four tracks play its own synth and drums and go out over USB and Bluetooth MIDI.",
+  "tags": ["sequencer", "synth", "midi"],
+  "install": "https://davidpryan.github.io/ledger-4/install/",
+  "site": "https://davidpryan.github.io/ledger-4/",
+  "source": "https://github.com/davidpryan/ledger-4",
+  "screenshot": "app/docs/img/screen-phrase.png",
+  "hardware": {
+    "models": ["FM-1"],
+    "flash": ["856014", "B36014"],
+    "features": ["bluetooth-midi", "bluetooth-midi-devices", "velocity", "pressure", "screen-reader"]
+  },
+  "credits": "Built on fm1-base and felucca-bsp, from Felucca by Leo Kuroshita (Hügelton Instruments). After Little Sound DJ and the Dirtywave M8. Fonts: Barlow (SIL OFL 1.1)."
+}

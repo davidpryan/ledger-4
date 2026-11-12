@@ -1,0 +1,7 @@
+# SPDX-License-Identifier: MPL-2.0
+# LEDGER-4's words for a screen reader (fm1-reader): the text on the screen <TAB> what to say.
+# url: https://davidpryan.github.io/ledger-4/words/
+LEDGER-4	ledger 4
+PHRASE	phrase
+CHAIN	chain
+SONG	song
