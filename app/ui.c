@@ -55,6 +55,11 @@ static const char *const CARD_TEXT[NB] = {
 #endif
 };
 
+static const char *const HINTS[NB] = {
+    [B_SEL] = "LFO COPY  PRESETS TRANSPOSE  TAP: OPEN",
+    [B_FX] = "CLEARS THE CELL", [B_ARP] = "NEW CHAIN / PHRASE / NOTE OFF", [B_LFO] = "PASTE  (SEL+LFO COPY)",
+};
+
 static void dirty(void) { U.dirty = 1; }
 
 /* ---- the next unused chain or phrase ---- */
@@ -589,6 +594,11 @@ static void input(void)
             } else {
                 U.prow = (uint8_t)clamp(U.prow + r, 0, NROW - 1);
                 U.pcol = (uint8_t)clamp(U.pcol + c, 0, NPC - 1);
+                if (r && !T.playing && cur_row()->note && cur_row()->note != NOTE_OFF) {   /* scrolling plays */
+                    const patch_t *pa = &P.ins[(cur_row()->ins != EMPTY ? cur_row()->ins : U.ins) % NINS];
+                    live_note(6, pa, cur_row()->note, cur_row()->vel != EMPTY ? cur_row()->vel : 100, 1);
+                    live_note(6, pa, cur_row()->note, 0, 0);
+                }
             }
         }
         if (K.enc[EN_PRESET] && HELD(B_SEL) && U.page == PG_PHRASE) {   /* transpose the phrase */

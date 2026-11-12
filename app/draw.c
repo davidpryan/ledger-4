@@ -239,7 +239,13 @@ static void draw_footline(void)                         /* the explanation line 
 
 static void draw(void)
 {
-    kit_header("LEDGER-4", PG_NM[U.page], ACCENT, T.playing, U.edit && U.page == PG_PHRASE, T.bpm10);
+    {
+        char pg[32];
+        s_cpy(pg, PG_NM[U.page]);
+        if (T.playing && (U.page != (E.mode == PM_SONG ? PG_SONG : E.mode == PM_CHAIN ? PG_CHAIN : PG_PHRASE)))
+            s_cat(pg, E.mode == PM_SONG ? "  > SONG" : E.mode == PM_CHAIN ? "  > CHAIN LOOP" : "  > PHRASE LOOP");
+        kit_header("LEDGER-4", pg, ACCENT, T.playing, U.edit && U.page == PG_PHRASE, T.bpm10);
+    }
     cv_begin(240, 200, K_BG);
     if (K.card < NB && CARD_TEXT[K.card]) {
         kit_card(K.card, CARD_TEXT[K.card], 200, ACCENT);
@@ -262,6 +268,7 @@ static void draw(void)
         kit_knobs("VALUE x16", "", "", "TEMPO", ACCENT);
     else
         kit_knobs("VALUE", "", "", "", ACCENT);
+    kit_hint(HINTS, ACCENT);
 }
 
 static void lights(void)
