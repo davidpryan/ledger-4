@@ -97,3 +97,5 @@ from the simulator. Nothing has been run on a real FM-1 yet; CPU load of the syn
 ## Licence
 
 MPL-2.0, as fm1-base. After Little Sound DJ (Johan Kotlinski) and the Dirtywave M8.
+
+You can also try Ledger 4 in the browser, no flashing needed, in the free community [FM-1 Emulator](https://fm1-emulator.atst.tools/).
